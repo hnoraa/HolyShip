@@ -12,21 +12,21 @@ namespace HolyShip.Logic
 
         public int posY { get; set; }
 
+        public int maxNumTurns { get; private set; }
+
+        public int numTurnsTaken { get; private set; }
+
+        public int maxNumRestTurns { get; private set; }
+
+        public int numRestTurnsTaken { get; private set; }
+
         public Enums.Direction direction { get; set; }
 
-        private int _restDuration { get; set; }
+        private int _level;
 
-        private int _restTurnsTaken { get; set; }
+        private int _hitPoints;
 
-        private int _maxNumTurns { get; set; }
-
-        private int _numTurnsUsed { get; set; }
-
-        private int _level { get; set; }
-
-        private int _hitPoints { get; set; }
-
-        private bool _isResting { get; set; }
+        private bool _isResting;
 
         public Ship(int posX, int posY, Enums.Direction direction)
         {
@@ -34,13 +34,15 @@ namespace HolyShip.Logic
             this.posY = posY;
             this.direction = direction;
 
-            _maxNumTurns = 5;
-            _numTurnsUsed = 0;
+            maxNumTurns = 5;
+            maxNumRestTurns = 5;
+
+            numRestTurnsTaken = 0;
+            numTurnsTaken = 0;
+
             _level = 0;
             _hitPoints = 100;
             _isResting = false;
-            _restTurnsTaken = 0;
-            _restDuration = 5;
         }
 
         public bool IsResting()
@@ -48,71 +50,63 @@ namespace HolyShip.Logic
             return _isResting;
         }
 
-        public int TurnsLeft()
+        public int RestTurnsLeft()
         {
-            return _maxNumTurns - _numTurnsUsed;
+            return maxNumRestTurns - numRestTurnsTaken;
         }
 
-        public void TakeTurn(int numSteps)
+        public int TurnsLeft()
         {
-            if(_isResting)
+            return maxNumTurns - numTurnsTaken;
+        }
+
+        public void TakeRestTurn()
+        {
+            if(numRestTurnsTaken == maxNumRestTurns)
             {
-                if(_restTurnsTaken == _restTurnsTaken)
-                {
-                    _isResting = false;
-                } 
-                else
-                {
-                    _restTurnsTaken += numSteps;
-                }
+                _isResting = false;
+                numRestTurnsTaken = 0;
             }
             else
             {
-                if (_numTurnsUsed == _maxNumTurns)
-                {
-                    _numTurnsUsed = 0;
-                    _isResting = true;
-                }
-                else
-                {
-                    _numTurnsUsed++;
-                    _isResting = false;
-                }
+                numRestTurnsTaken++;
             }
         }
 
         public void Move(Enums.Direction direction, int numSteps, int gridHeight, int gridWidth) {
-            TakeTurn(numSteps);
+            this.direction = direction;
 
-            if(!_isResting)
+            switch (direction)
             {
-                this.direction = direction;
-
-                switch (direction)
-                {
-                    case Enums.Direction.North:
-                    case Enums.Direction.South:
-                        int velY = direction == Enums.Direction.North ? -numSteps : numSteps;
-                        if ((direction == Enums.Direction.North && (posY + velY) >= 0) || (direction == Enums.Direction.South && (posY + velY) <= gridHeight))   //grid.GetLength(1)
-                        {
-                            posY += velY;
-                        }
-                        break;
-                    case Enums.Direction.West:
-                    case Enums.Direction.East:
-                        int velX = direction == Enums.Direction.West ? -numSteps : numSteps;
-                        if ((direction == Enums.Direction.West && (posX + velX) >= 0) || (direction == Enums.Direction.East && (posX + velX) <= gridWidth))   //grid.GetLength(0)
-                        {
-                            posX += velX;
-                        }
-                        break;
-                }
+                case Enums.Direction.North:
+                case Enums.Direction.South:
+                    int velY = direction == Enums.Direction.North ? -numSteps : numSteps;
+                    if ((direction == Enums.Direction.North && (posY + velY) >= 0) || (direction == Enums.Direction.South && (posY + velY) <= gridHeight))   //grid.GetLength(1)
+                    {
+                        posY += velY;
+                    }
+                    break;
+                case Enums.Direction.West:
+                case Enums.Direction.East:
+                    int velX = direction == Enums.Direction.West ? -numSteps : numSteps;
+                    if ((direction == Enums.Direction.West && (posX + velX) >= 0) || (direction == Enums.Direction.East && (posX + velX) <= gridWidth))   //grid.GetLength(0)
+                    {
+                        posX += velX;
+                    }
+                    break;
             }
-        }
 
-        public void LevelUp()
-        {
+            numTurnsTaken += numSteps;
 
+            if (numTurnsTaken >= maxNumTurns)
+            {
+                numTurnsTaken = 0;
+                _isResting = true;
+            }
+            else
+            {
+                _isResting = false;
+            }
         }
     }
 }

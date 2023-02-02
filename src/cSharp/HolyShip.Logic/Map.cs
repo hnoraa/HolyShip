@@ -67,10 +67,7 @@ namespace HolyShip.Logic
 
         public void DrawMap(Ship ship)
         {
-            Console.WriteLine("Map");
-            Console.Write("+");
-            Console.Write(new string('-', (grid.GetLength(0)*2) -1));
-            Console.WriteLine("+");
+            Console.WriteLine($"+{new string('-', (grid.GetLength(1)*2) -1)}+");
             for (int y = 0; y < grid.GetLength(0); y++)
             {
                 Console.Write('|');
@@ -97,10 +94,8 @@ namespace HolyShip.Logic
                 Console.ResetColor();
                 Console.WriteLine("|");
             }
-            Console.Write("+");
-            Console.Write(new string('-', (grid.GetLength(0) * 2) - 1));
-            Console.WriteLine("+");
-            Console.WriteLine($"Wind Speed: {windSpeed.ToString("#.00")} | Wind Direction: {windDirection} | ShipDirection: {ship.direction}");
+            Console.WriteLine($"+{new string('-', (grid.GetLength(1) * 2) - 1)}+");
+            Console.WriteLine($"Wind Speed: {windSpeed.ToString("#.00")} | Wind Direction: {windDirection}\nShip Direction: {ship.direction} | Turns: {ship.numTurnsTaken}/{ship.maxNumTurns}");
         }
     }
 }
