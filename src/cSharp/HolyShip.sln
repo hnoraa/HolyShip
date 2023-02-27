@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testers", "Testers", "{F984
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HolyShip.MapTester", "HolyShip.MapTester\HolyShip.MapTester.csproj", "{ED895EE4-53BA-446C-B306-32BED7847A66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolyShip.SceneTester", "HolyShip.SceneTester\HolyShip.SceneTester.csproj", "{462B0C4D-6463-4FFC-99EA-3821915D1612}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,12 +31,17 @@ Global
 		{ED895EE4-53BA-446C-B306-32BED7847A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED895EE4-53BA-446C-B306-32BED7847A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED895EE4-53BA-446C-B306-32BED7847A66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{462B0C4D-6463-4FFC-99EA-3821915D1612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{462B0C4D-6463-4FFC-99EA-3821915D1612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{462B0C4D-6463-4FFC-99EA-3821915D1612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{462B0C4D-6463-4FFC-99EA-3821915D1612}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{ED895EE4-53BA-446C-B306-32BED7847A66} = {F9841EA7-9005-4CE4-A1CD-34DA6B10C6B2}
+		{462B0C4D-6463-4FFC-99EA-3821915D1612} = {F9841EA7-9005-4CE4-A1CD-34DA6B10C6B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BB5EBEC2-F2E2-469D-A91F-0A04BB6FC8DE}

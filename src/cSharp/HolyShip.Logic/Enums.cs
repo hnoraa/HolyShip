@@ -14,7 +14,7 @@ namespace HolyShip.Logic
             Clipper,
             Barque,
             Frigate,
-            Galleon,
+            Galleon
         }
 
         public enum Direction
@@ -23,6 +23,15 @@ namespace HolyShip.Logic
             South,
             East,
             West
+        }
+
+        public enum Scene
+        {
+            Title,
+            MainMenu,
+            PauseMenu,
+            SaveMenu,
+            Map
         }
     }
 }
