@@ -31,7 +31,26 @@ namespace HolyShip.Logic
             MainMenu,
             PauseMenu,
             SaveMenu,
-            Map
+            Map,
+            NewGame,
+            LoadGame,
+            GameOver,
+            Quit
+        }
+
+        public enum Action
+        {
+            NewGame,
+            LoadGame,
+            GoToMap,
+            Pause,
+            MainMenu,
+            SaveInitialized,
+            SaveCompleted,
+            Died,
+            BackToGame,
+            BackToTitle,
+            Quit
         }
     }
 }

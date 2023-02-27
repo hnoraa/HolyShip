@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HolyShip.Logic
+namespace HolyShip.Logic.Entities
 {
     public class Ship
     {
@@ -62,7 +62,7 @@ namespace HolyShip.Logic
 
         public void TakeRestTurn()
         {
-            if(numRestTurnsTaken == maxNumRestTurns)
+            if (numRestTurnsTaken == maxNumRestTurns)
             {
                 _isResting = false;
                 numRestTurnsTaken = 0;
@@ -73,7 +73,8 @@ namespace HolyShip.Logic
             }
         }
 
-        public void Move(Enums.Direction direction, int numSteps, int gridHeight, int gridWidth) {
+        public void Move(Enums.Direction direction, int numSteps, int gridHeight, int gridWidth)
+        {
             this.direction = direction;
 
             switch (direction)
@@ -81,7 +82,7 @@ namespace HolyShip.Logic
                 case Enums.Direction.North:
                 case Enums.Direction.South:
                     int velY = direction == Enums.Direction.North ? -numSteps : numSteps;
-                    if ((direction == Enums.Direction.North && (posY + velY) >= 0) || (direction == Enums.Direction.South && (posY + velY) <= gridHeight))   //grid.GetLength(1)
+                    if (direction == Enums.Direction.North && posY + velY >= 0 || direction == Enums.Direction.South && posY + velY <= gridHeight)   //grid.GetLength(1)
                     {
                         posY += velY;
                     }
@@ -89,7 +90,7 @@ namespace HolyShip.Logic
                 case Enums.Direction.West:
                 case Enums.Direction.East:
                     int velX = direction == Enums.Direction.West ? -numSteps : numSteps;
-                    if ((direction == Enums.Direction.West && (posX + velX) >= 0) || (direction == Enums.Direction.East && (posX + velX) <= gridWidth))   //grid.GetLength(0)
+                    if (direction == Enums.Direction.West && posX + velX >= 0 || direction == Enums.Direction.East && posX + velX <= gridWidth)   //grid.GetLength(0)
                     {
                         posX += velX;
                     }

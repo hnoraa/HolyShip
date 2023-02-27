@@ -1,17 +1,30 @@
 ﻿using HolyShip.Logic;
+using HolyShip.Logic.SceneLogic;
 
 bool running = true;
+string? command;
 
+SceneManager sceneManager = new SceneManager();
 
+sceneManager.Rendering();
 
 while(running)
 {
-    if (Console.ReadKey().ToString().ToLowerInvariant().Equals("q"))
+    command = Console.ReadLine();
+    
+    string? result = sceneManager.Events(command);
+
+    if (result != null)
     {
-        running = false;
+        if (result.Equals("quit"))
+        {
+            break;
+        }
     }
 
-    // show scene
+    sceneManager.Updates();
+
+    sceneManager.Rendering();
 }
 
 Console.WriteLine("End of simulation...");
